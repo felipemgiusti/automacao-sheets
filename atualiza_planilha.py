@@ -1,4 +1,6 @@
 import os
+import json
+from pathlib import Path
 import requests
 import pandas as pd
 import gspread
@@ -14,8 +16,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # --- Configuracoes globais ---
 AUTH_TOKEN = os.getenv("AUTH_TOKEN")
-print("AUTH_TOKEN carregado?", AUTH_TOKEN is not None)
-print("Tamanho do token:", len(AUTH_TOKEN) if AUTH_TOKEN else 0)
+
 
 SCOPES = [
     "https://spreadsheets.google.com/feeds",
@@ -131,8 +132,18 @@ comite_de_crise_mapping_J = {
     23: {"url": 89761, "coluna": "detr_fun_sp", "coluna_alvo": "J"}
 }
 
-def configurar_google_sheets(json_keyfile):
-    creds = ServiceAccountCredentials.from_json_keyfile_name(json_keyfile, SCOPES)
+def configurar_google_sheets(json_keyfile=None):
+    google_creds_env = os.getenv("GOOGLE_CREDENTIALS")
+
+    if google_creds_env:
+        creds_dict = json.loads(google_creds_env)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, SCOPES)
+    else:
+        if json_keyfile is None:
+            json_keyfile = Path(__file__).resolve().parent / "atualiza-sheets-15ac1cb4807d.json"
+
+        creds = ServiceAccountCredentials.from_json_keyfile_name(str(json_keyfile), SCOPES)
+
     client = gspread.authorize(creds)
     return client.open("[OPS] Farol indicadores UR")
 
