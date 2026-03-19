@@ -3,7 +3,7 @@ name: Atualizar planilha
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 19 * * *'
+    - cron: '17 19 * * *'  # 16:17 no Brasil (UTC-3)
 
 jobs:
   atualizar:
@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Baixar codigo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
