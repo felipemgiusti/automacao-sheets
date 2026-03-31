@@ -439,6 +439,7 @@ def atualizar_comite_de_crise(sheet, data_atual):
     if data_sexta:
         card_id_89830 = 89830
         colunas_89830 = [
+        ("M4", "frota_sp"),
         ("C3", "detr_opera"),
         ("C4", "maint_fixes"),
         ("C5", "maint_issue"),
@@ -565,6 +566,7 @@ def atualizar_comite_de_crise(sheet, data_atual):
 
         card_id_89830 = 89830
         colunas_89830 = [
+            ("M3", "frota_sp"),
             ("E3", "detr_opera"),
             ("E4", "maint_fixes"),
             ("E5", "maint_issue"),
