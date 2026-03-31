@@ -220,6 +220,8 @@ def obter_dados_metabase(card_id, parametros):
             return None
 
         df.columns = df.columns.str.strip()
+        
+        
         return df
 
     except Exception as e:
@@ -456,6 +458,9 @@ def atualizar_comite_de_crise(sheet, data_atual):
         ("C9", "prep_sao_paulo"),
         ("C10", "prep_poa"),
         ("C11", "prep_novas_cidades"),
+        ("D9", "detr_prep_sp"),
+        ("D10", "detr_prep_poa"),
+        ("D11", "detr_prep_cidades"),
     ]
         
         card_id_colunas_d = 89830  
@@ -577,6 +582,9 @@ def atualizar_comite_de_crise(sheet, data_atual):
             ("E9", "prep_sao_paulo"),
             ("E10", "prep_poa"),
             ("E11", "prep_novas_cidades"),
+            ("F9", "detr_prep_sp"),
+            ("F10", "detr_prep_poa"),
+            ("F11", "detr_prep_cidades"),
         ]
         colunas_f = [
             ("F3", "detr_operacoes"),
