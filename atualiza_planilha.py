@@ -372,6 +372,14 @@ def atualizar_comite_de_crise(sheet, data_atual):
             valor = float(df[coluna].values[0])
             sheet.update_acell(cell, valor)
             print(f"Célula {cell} atualizada: {valor}")
+            
+    card_id_92088 = 92088
+    parametros = [{"type": "date", "target": ["variable", ["template-tag", "data_inicial"]], "value": data_filtro}]
+    df = obter_dados_metabase(card_id_92088, parametros)
+    if df is not None and "ag_diag" in df.columns:
+        valor = round(float(df["ag_diag"].values[0]), 2)
+        sheet.update_acell("G18", valor)
+        print("Célula G18 atualizada:", valor)
 
 
     card_id_3 = 89847
@@ -499,7 +507,15 @@ def atualizar_comite_de_crise(sheet, data_atual):
                 valor = float(df[coluna].values[0])
                 sheet.update_acell(cell, valor)
                 print(f"Célula {cell} (sexta) atualizada: {valor}")
-
+                
+            
+        card_id_92088 = 92088
+        parametros = [{"type": "date", "target": ["variable", ["template-tag", "data_inicial"]], "value": data_filtro}]
+        df = obter_dados_metabase(card_id_92088, parametros)
+        if df is not None and "ag_diag" in df.columns:
+            valor = round(float(df["ag_diag"].values[0]), 2)
+            sheet.update_acell("C18", valor)
+            print("Célula C18 atualizada:", valor)
 
         card_id_3 = 89847
         for cell, coluna in [("C20", "total_flag_mec"), ("C21", "total_flag_fun"), ("C22", "total_flag_mec_sp"), ("C23", "total_flag_fun_sp"), ("D20", "detr_mec"), ("D21", "detr_fun"), ("D22", "detr_mec_sp"), ("D23", "detr_fun_sp")]:
@@ -627,7 +643,16 @@ def atualizar_comite_de_crise(sheet, data_atual):
                 valor = float(df[coluna].values[0])
                 sheet.update_acell(cell, valor)
                 print(f"Célula {cell} (sábado) atualizada: {valor}")
-        
+                
+                
+        card_id_92088 = 92088
+        parametros = [{"type": "date", "target": ["variable", ["template-tag", "data_inicial"]], "value": data_filtro}]
+        df = obter_dados_metabase(card_id_92088, parametros)
+        if df is not None and "ag_diag" in df.columns:
+            valor = round(float(df["ag_diag"].values[0]), 2)
+            sheet.update_acell("E18", valor)
+            print("Célula E18 atualizada:", valor)
+
         card_id_3 = 89847
         for cell, coluna in [("E20", "total_flag_mec"), ("E21", "total_flag_fun"), ("E22", "total_flag_mec_sp"), ("E23", "total_flag_fun_sp"), ("F20", "detr_mec"), ("F21", "detr_fun"), ("F22", "detr_mec_sp"), ("F23", "detr_fun_sp")]:
             parametros = [{"type": "date", "target": ["variable", ["template-tag", "data_backlog"]], "value": data_sabado}]
