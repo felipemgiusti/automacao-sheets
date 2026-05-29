@@ -210,8 +210,9 @@ def atualizar_hoje_I_J(sheet, data_atual):
         ("I27", 89777, "JURUBATUBA - MECANICA", [parametro_data("Date_inicial", data_atual)]),
         ("I28", 89777, "JURUBATUBA - FUNILARIA", [parametro_data("Date_inicial", data_atual)]),
         ("I29", 89777, "AMADOR BUENO - FUNILARIA", [parametro_data("Date_inicial", data_atual)]),
-        ("I30", 89777, "OFICINA EXTERNA", [parametro_data("Date_inicial", data_atual)]),
-        ("I32", 97334, "total", [parametro_data("Date_inicial", data_atual)]),
+        ("I30", 98982, "funilaria", [parametro_data("DATA_INICIAL", data_atual)]),
+        ("I31", 98982, "mecanica", [parametro_data("DATA_INICIAL", data_atual)]),
+        ("I33", 97334, "total", [parametro_data("Date_inicial", data_atual)]),
     ]
 
     indicadores_J = [
@@ -266,7 +267,7 @@ def atualizar_bloco_principal(sheet, data_filtro, coluna_base, coluna_aux_m=None
         (f"{coluna_base}24", 89771, "total_recebidos", "data_chegada"),
         (f"{coluna_base}25", 89773, "diag_mec", "data_inicial"),
         (f"{coluna_base}26", 89850, "total_diag", "data"),
-        (f"{coluna_base}32", 97334, "total", "Date_inicial"),
+        (f"{coluna_base}33", 97334, "total", "Date_inicial"),
     ]
 
     for cell, card_id, coluna, param_name in mapa:
@@ -312,19 +313,28 @@ def atualizar_detratores(sheet, data_filtro, coluna_destino):
 
 def atualizar_oficinas(sheet, data_filtro, coluna_base):
     mapa = [
-        (f"{coluna_base}27", "JURUBATUBA - MECANICA"),
-        (f"{coluna_base}28", "JURUBATUBA - FUNILARIA"),
-        (f"{coluna_base}29", "AMADOR BUENO - FUNILARIA"),
-        (f"{coluna_base}30", "OFICINA EXTERNA"),
+        (f"{coluna_base}27", 89777, "JURUBATUBA - MECANICA", [
+            parametro_data("Date_inicial", data_filtro),
+            parametro_data("Date_final", data_filtro),
+        ]),
+        (f"{coluna_base}28", 89777, "JURUBATUBA - FUNILARIA", [
+            parametro_data("Date_inicial", data_filtro),
+            parametro_data("Date_final", data_filtro),
+        ]),
+        (f"{coluna_base}29", 89777, "AMADOR BUENO - FUNILARIA", [
+            parametro_data("Date_inicial", data_filtro),
+            parametro_data("Date_final", data_filtro),
+        ]),
+        (f"{coluna_base}30", 98982, "funilaria", [
+            parametro_data("DATA_INICIAL", data_filtro),
+        ]),
+        (f"{coluna_base}31", 98982, "mecanica", [
+            parametro_data("DATA_INICIAL", data_filtro),
+        ]),
     ]
 
-    parametros = [
-        parametro_data("Date_inicial", data_filtro),
-        parametro_data("Date_final", data_filtro),
-    ]
-
-    for cell, coluna in mapa:
-        atualizar_celula_metabase(sheet, cell, 89777, coluna, parametros)
+    for cell, card_id, coluna, parametros in mapa:
+        atualizar_celula_metabase(sheet, cell, card_id, coluna, parametros)
 
 
 # =========================================================
