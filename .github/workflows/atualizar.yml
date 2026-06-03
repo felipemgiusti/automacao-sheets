@@ -3,9 +3,13 @@ name: Atualizar planilha
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 16 * * *'   # 13:07 BRT
-    - cron: '23 17 * * *'  # 14:23 BRT
-    - cron: '41 18 * * *'  # 15:41 BRT
+    - cron: '7 15 * * *'   # 12:07 BRT
+    - cron: '23 16 * * *'  # 13:23 BRT
+    - cron: '41 17 * * *'  # 14:41 BRT
+
+concurrency:
+  group: atualizar-planilha
+  cancel-in-progress: false
 
 jobs:
   atualizar:
@@ -16,6 +20,13 @@ jobs:
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
     steps:
+      - name: Mostrar horário do runner
+        run: |
+          echo "UTC:"
+          date -u
+          echo "SAO PAULO:"
+          TZ=America/Sao_Paulo date
+
       - name: Baixar codigo
         uses: actions/checkout@v4
 
