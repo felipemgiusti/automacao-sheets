@@ -199,7 +199,7 @@ def atualizar_hoje_I_J(sheet, data_atual):
         ("I17", 93017, "maint_recurrent", []),
         ("I18", 93017, "total_inspection", []),
         ("I19", 89765, "rec_pend", []),
-        ("I20", 89662, "ag_diag", []),
+        ("I20", 89662, "backlog", []),
         ("I21", 96394, "pendente_diagnostico", []),
         ("I22", 89761, "total_flag_mec", []),
         ("I23", 89761, "total_flag_fun", []),
