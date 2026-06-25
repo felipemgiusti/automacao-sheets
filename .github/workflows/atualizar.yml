@@ -3,6 +3,7 @@ name: Atualizar planilha
 on:
   workflow_dispatch:
   schedule:
+    - cron: '7 06 * * *'   # 03:07 BRT
     - cron: '7 15 * * *'   # 12:07 BRT
     - cron: '23 16 * * *'  # 13:23 BRT
     - cron: '41 17 * * *'  # 14:41 BRT
